@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Register | CareerTrack{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-panel">
+        <div class="mb-4">
+            <p class="text-uppercase small text-muted fw-semibold mb-1">Start tracking</p>
+            <h1 class="h3 fw-bold mb-2">Create your CareerTrack account</h1>
+            <p class="text-muted mb-0">Organize applications, interviews, and status changes in one place.</p>
+        </div>
+
+        <form method="post" class="vstack gap-3">
+            <div>
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ form.get('name', '') }}" autocomplete="name" required>
+            </div>
+            <div>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ form.get('email', '') }}" autocomplete="email" required>
+            </div>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <div>
+                <label for="confirm_password" class="form-label">Confirm password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <button type="submit" class="btn btn-brand btn-lg">Create account</button>
+        </form>
+
+        <p class="text-muted mt-4 mb-0">
+            Already have an account?
+            <a href="{{ url_for('login') }}" class="fw-semibold">Log in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

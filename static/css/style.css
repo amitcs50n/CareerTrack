@@ -1,0 +1,260 @@
+:root {
+    --brand: #19535f;
+    --brand-dark: #113a42;
+    --brand-soft: #e6f1f3;
+    --ink: #1f2933;
+    --muted: #64748b;
+    --panel: #ffffff;
+    --line: #d9e2ec;
+    --page: #f6f8fb;
+}
+
+body {
+    background: var(--page);
+    color: var(--ink);
+}
+
+a {
+    color: var(--brand);
+}
+
+a:hover {
+    color: var(--brand-dark);
+}
+
+.bg-brand {
+    background: var(--brand);
+}
+
+.text-brand {
+    color: var(--brand);
+}
+
+.page-shell {
+    min-height: calc(100vh - 56px);
+}
+
+.flash-stack {
+    max-width: 960px;
+}
+
+.btn-brand {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--brand);
+    --bs-btn-border-color: var(--brand);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--brand-dark);
+    --bs-btn-hover-border-color: var(--brand-dark);
+}
+
+.btn-outline-brand {
+    --bs-btn-color: var(--brand);
+    --bs-btn-border-color: var(--brand);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--brand);
+    --bs-btn-hover-border-color: var(--brand);
+}
+
+.auth-wrap {
+    display: grid;
+    min-height: calc(100vh - 160px);
+    place-items: center;
+}
+
+.auth-panel,
+.content-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.auth-panel {
+    width: min(100%, 480px);
+    padding: 2rem;
+}
+
+.content-panel {
+    padding: 1.25rem;
+}
+
+.metric-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.metric-card span {
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.metric-card strong {
+    color: var(--brand-dark);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.metric-total {
+    background: var(--brand);
+}
+
+.metric-total span,
+.metric-total strong {
+    color: #fff;
+}
+
+.status-pill {
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+    min-height: 1.75rem;
+    padding: 0.4rem 0.65rem;
+    white-space: nowrap;
+}
+
+.status-saved {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.status-applied {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-screening {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-interview {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.status-offer {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.status-withdrawn {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+.empty-state {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    color: var(--muted);
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.table-link {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.table-link:hover {
+    color: var(--brand);
+}
+
+.interview-item,
+.interview-card {
+    background: #f8fafc;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+.interview-item:hover {
+    border-color: var(--brand);
+    color: var(--ink);
+}
+
+.detail-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 0;
+}
+
+.detail-grid div {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.75rem;
+}
+
+.detail-grid dt {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.detail-grid dd {
+    margin-bottom: 0;
+}
+
+.timeline {
+    border-left: 2px solid var(--line);
+    display: grid;
+    gap: 1rem;
+    margin-left: 0.5rem;
+    padding-left: 1rem;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    background: var(--brand);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    content: "";
+    height: 0.85rem;
+    left: -1.5rem;
+    position: absolute;
+    top: 0.2rem;
+    width: 0.85rem;
+}
+
+.text-preline {
+    white-space: pre-line;
+}
+
+.add-interview-form {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .auth-panel,
+    .content-panel {
+        padding: 1rem;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+}

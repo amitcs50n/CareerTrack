@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% set is_edit = mode == "edit" %}
+{% block title %}{{ "Edit" if is_edit else "Add" }} Application | CareerTrack{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
+    <div>
+        <p class="text-uppercase small text-muted fw-semibold mb-1">{{ "Edit application" if is_edit else "New application" }}</p>
+        <h1 class="h2 fw-bold mb-1">{{ "Update opportunity details" if is_edit else "Add a job application" }}</h1>
+        <p class="text-muted mb-0">Keep the role, status, dates, and notes current.</p>
+    </div>
+    <a href="{{ url_for('applications') }}" class="btn btn-outline-secondary">Back to list</a>
+</div>
+
+<section class="content-panel">
+    <form method="post" action="{{ action_url }}" class="row g-3">
+        {% set company_value = application.get('COMPANY') or application.get('company', '') %}
+        {% set job_title_value = application.get('JOB_TITLE') or application.get('job_title', '') %}
+        {% set job_location_value = application.get('JOB_LOCATION') or application.get('job_location', '') %}
+        {% set job_url_value = application.get('JOB_URL') or application.get('job_url', '') %}
+        {% set salary_range_value = application.get('SALARY_RANGE') or application.get('salary_range', '') %}
+        {% set applied_date_value = application.get('APPLIED_DATE') or application.get('applied_date', '') %}
+        {% set deadline_date_value = application.get('DEADLINE_DATE') or application.get('deadline_date', '') %}
+        {% set notes_value = application.get('NOTES') or application.get('notes', '') %}
+        <div class="col-md-6">
+            <label for="company" class="form-label">Company</label>
+            <input type="text" class="form-control" id="company" name="company" value="{{ company_value }}" required>
+        </div>
+        <div class="col-md-6">
+            <label for="job_title" class="form-label">Job title</label>
+            <input type="text" class="form-control" id="job_title" name="job_title" value="{{ job_title_value }}" required>
+        </div>
+        <div class="col-md-6">
+            <label for="job_location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="job_location" name="job_location" value="{{ job_location_value }}">
+        </div>
+        <div class="col-md-6">
+            <label for="job_url" class="form-label">Job URL</label>
+            <input type="url" class="form-control" id="job_url" name="job_url" value="{{ job_url_value }}">
+        </div>
+        <div class="col-md-4">
+            <label for="status" class="form-label">Status</label>
+            {% set current_status = application.get('STATUS') or application.get('status', 'Saved') %}
+            <select class="form-select" id="status" name="status">
+                {% for status in STATUS_OPTIONS %}
+                    <option value="{{ status }}" {% if current_status == status %}selected{% endif %}>{{ status }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="applied_date" class="form-label">Applied date</label>
+            <input type="date" class="form-control" id="applied_date" name="applied_date" value="{{ applied_date_value|date_input }}">
+        </div>
+        <div class="col-md-4">
+            <label for="deadline_date" class="form-label">Deadline</label>
+            <input type="date" class="form-control" id="deadline_date" name="deadline_date" value="{{ deadline_date_value|date_input }}">
+        </div>
+        <div class="col-md-6">
+            <label for="salary_range" class="form-label">Salary range</label>
+            <input type="text" class="form-control" id="salary_range" name="salary_range" value="{{ salary_range_value }}">
+        </div>
+        <div class="col-12">
+            <label for="notes" class="form-label">Notes</label>
+            <textarea class="form-control" id="notes" name="notes" rows="5">{{ notes_value }}</textarea>
+        </div>
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-brand">{{ "Save Changes" if is_edit else "Add Application" }}</button>
+            <a href="{{ url_for('applications') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

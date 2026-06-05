@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | CareerTrack{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
+    <div>
+        <p class="text-uppercase small text-muted fw-semibold mb-1">Dashboard</p>
+        <h1 class="h2 fw-bold mb-1">Your job search at a glance</h1>
+        <p class="text-muted mb-0">Welcome back, {{ current_user.name }}.</p>
+    </div>
+    <a href="{{ url_for('new_application') }}" class="btn btn-brand">Add Application</a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-6 col-lg-2">
+        <div class="metric-card metric-total">
+            <span>Total</span>
+            <strong>{{ summary.Total }}</strong>
+        </div>
+    </div>
+    {% for status in ["Saved", "Applied", "Interview", "Offer", "Rejected"] %}
+        <div class="col-6 col-lg-2">
+            <div class="metric-card">
+                <span>{{ status }}</span>
+                <strong>{{ summary[status] }}</strong>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <section class="content-panel h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="h5 fw-bold mb-0">Recent applications</h2>
+                <a href="{{ url_for('applications') }}" class="btn btn-sm btn-outline-brand">View all</a>
+            </div>
+            {% if recent_applications %}
+                <div class="list-group list-group-flush">
+                    {% for application in recent_applications %}
+                        <a href="{{ url_for('application_detail', application_id=application.ID) }}" class="list-group-item list-group-item-action px-0">
+                            <div class="d-flex justify-content-between gap-3">
+                                <div>
+                                    <div class="fw-semibold">{{ application.JOB_TITLE }}</div>
+                                    <div class="text-muted small">{{ application.COMPANY }}</div>
+                                </div>
+                                <span class="status-pill status-{{ application.STATUS|lower }}">{{ application.STATUS }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p class="mb-3">No applications yet.</p>
+                    <a href="{{ url_for('new_application') }}" class="btn btn-brand btn-sm">Add your first one</a>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+    <div class="col-lg-5">
+        <section class="content-panel h-100">
+            <h2 class="h5 fw-bold mb-3">Upcoming interviews</h2>
+            {% if upcoming_interviews %}
+                <div class="vstack gap-3">
+                    {% for interview in upcoming_interviews %}
+                        <a class="interview-item" href="{{ url_for('application_detail', application_id=interview.APPLICATION_ID) }}">
+                            <div class="fw-semibold">{{ interview.INTERVIEW_TYPE }}</div>
+                            <div class="text-muted small">{{ interview.COMPANY }} - {{ interview.JOB_TITLE }}</div>
+                            <div class="small mt-1">{{ interview.SCHEDULED_AT|display_datetime }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p class="mb-0">No interviews scheduled.</p>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+</div>
+{% endblock %}

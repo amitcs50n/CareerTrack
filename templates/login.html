@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Login | CareerTrack{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-panel">
+        <div class="mb-4">
+            <p class="text-uppercase small text-muted fw-semibold mb-1">Welcome back</p>
+            <h1 class="h3 fw-bold mb-2">Log in to CareerTrack</h1>
+            <p class="text-muted mb-0">Keep your job search pipeline organized and current.</p>
+        </div>
+
+        <form method="post" class="vstack gap-3">
+            <div>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                <label class="form-check-label" for="remember">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-brand btn-lg">Login</button>
+        </form>
+
+        <p class="text-muted mt-4 mb-0">
+            New here?
+            <a href="{{ url_for('register') }}" class="fw-semibold">Create an account</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
