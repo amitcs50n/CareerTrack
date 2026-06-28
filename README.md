@@ -16,6 +16,17 @@ CareerTrack is a Flask and Snowflake job application tracker built as a clean po
 ```text
 CareerTrack/
   app.py
+  careertrack/
+    __init__.py
+    applications.py
+    auth.py
+    constants.py
+    db.py
+    extensions.py
+    main.py
+    models.py
+    template_filters.py
+    utils.py
   requirements.txt
   .env.example
   README.md

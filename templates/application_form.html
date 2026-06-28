@@ -10,7 +10,7 @@
         <h1 class="h2 fw-bold mb-1">{{ "Update opportunity details" if is_edit else "Add a job application" }}</h1>
         <p class="text-muted mb-0">Keep the role, status, dates, and notes current.</p>
     </div>
-    <a href="{{ url_for('applications') }}" class="btn btn-outline-secondary">Back to list</a>
+    <a href="{{ url_for('applications.list_applications') }}" class="btn btn-outline-secondary">Back to list</a>
 </div>
 
 <section class="content-panel">
@@ -66,7 +66,7 @@
         </div>
         <div class="col-12 d-flex gap-2">
             <button type="submit" class="btn btn-brand">{{ "Save Changes" if is_edit else "Add Application" }}</button>
-            <a href="{{ url_for('applications') }}" class="btn btn-outline-secondary">Cancel</a>
+            <a href="{{ url_for('applications.list_applications') }}" class="btn btn-outline-secondary">Cancel</a>
         </div>
     </form>
 </section>
