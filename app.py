@@ -13,12 +13,11 @@ from flask_login import (
     login_user,
     logout_user,
 )
+
 from snowflake.connector import DictCursor
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
 load_dotenv()
-
 
 STATUS_OPTIONS = [
     "Saved",
@@ -31,7 +30,6 @@ STATUS_OPTIONS = [
 ]
 
 SUMMARY_STATUSES = ["Saved", "Applied", "Interview", "Offer", "Rejected"]
-
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "change-this-secret-key")
@@ -498,7 +496,6 @@ def new_application():
         application={},
         action_url=url_for("new_application"),
     )
-
 
 @app.route("/applications/<application_id>")
 @login_required
