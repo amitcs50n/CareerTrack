@@ -8,6 +8,11 @@ from .db import fetch_all
 main_bp = Blueprint("main", __name__)
 
 
+@main_bp.route("/health")
+def health():
+    return {"status": "ok"}
+
+
 @main_bp.route("/")
 def index():
     if current_user.is_authenticated:

@@ -110,9 +110,40 @@ Then open:
 http://127.0.0.1:5000
 ```
 
+## Azure App Service Deployment
+
+Deploy the app as a Linux Python web app from GitHub.
+
+Recommended App Service settings:
+
+- Runtime stack: Python 3.11 or newer
+- Startup command: `bash startup.sh`
+- Branch: `main` or your deployment branch
+
+Add these App Service environment variables. Do not upload `.env` to Azure.
+
+```text
+FLASK_DEBUG=0
+FLASK_SECRET_KEY=<long-random-secret>
+SNOWFLAKE_ACCOUNT=<account-identifier>
+SNOWFLAKE_USER=<snowflake-user>
+SNOWFLAKE_PASSWORD=<snowflake-password>
+SNOWFLAKE_ROLE=ACCOUNTADMIN
+SNOWFLAKE_WAREHOUSE=CAREERTRACK_WH
+SNOWFLAKE_DATABASE=CAREERTRACK_DB
+SNOWFLAKE_SCHEMA=APP
+```
+
+After deployment, check the health endpoint:
+
+```text
+https://<your-app-name>.azurewebsites.net/health
+```
+
 ## Routes
 
 - `/` redirects to login or dashboard
+- `/health` returns a simple health check response
 - `/register` creates a user account
 - `/login` logs in a user
 - `/logout` logs out a user
