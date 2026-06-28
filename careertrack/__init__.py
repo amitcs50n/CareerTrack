@@ -10,7 +10,7 @@ from .template_filters import date_input, display_date, display_datetime
 
 
 def create_app():
-    load_dotenv()
+    load_dotenv(override=True)
 
     app = Flask(__name__, template_folder="../templates", static_folder="../static")
     app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "change-this-secret-key")
