@@ -196,7 +196,7 @@ ACR_USERNAME=<azure-container-registry-username>
 ACR_PASSWORD=<azure-container-registry-password>
 ```
 
-The workflow at `.github/workflows/docker_careertrack.yml` runs on pushes to `main`.
+The workflow at `.github/workflows/main_careertrack12.yml` runs on pushes to `main`.
 
 It performs this flow:
 
