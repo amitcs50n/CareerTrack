@@ -9,12 +9,17 @@ CareerTrack is a Flask and Snowflake job application tracker built as a clean po
 - Flask-Login
 - Werkzeug password hashing
 - python-dotenv
+- Docker
 - Bootstrap and Jinja templates
 
 ## Project Structure
 
 ```text
 CareerTrack/
+  .dockerignore
+  .env.example
+  compose.yaml
+  Dockerfile
   app.py
   careertrack/
     __init__.py
@@ -28,7 +33,6 @@ CareerTrack/
     template_filters.py
     utils.py
   requirements.txt
-  .env.example
   README.md
   sql/schema.sql
   static/css/style.css
@@ -108,6 +112,47 @@ Then open:
 
 ```text
 http://127.0.0.1:5000
+```
+
+## Docker Setup
+
+Create your environment file:
+
+```bash
+cp .env.example .env
+```
+
+On Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Edit `.env` with your real Snowflake settings. Do not commit `.env`.
+
+Build and run with Docker:
+
+```bash
+docker build -t careertrack .
+docker run --env-file .env -p 8000:8000 careertrack
+```
+
+Or use Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000
+```
+
+Health check:
+
+```text
+http://127.0.0.1:8000/health
 ```
 
 ## Azure App Service Deployment
