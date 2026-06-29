@@ -185,6 +185,30 @@ After deployment, check the health endpoint:
 https://<your-app-name>.azurewebsites.net/health
 ```
 
+## Azure Docker CI/CD
+
+The Docker deployment uses Azure Container Registry and the `careertrack12` Azure Web App.
+
+Required GitHub Actions secrets:
+
+```text
+ACR_USERNAME=<azure-container-registry-username>
+ACR_PASSWORD=<azure-container-registry-password>
+```
+
+The workflow at `.github/workflows/docker_careertrack.yml` runs on pushes to `main`.
+
+It performs this flow:
+
+```text
+GitHub main push
+-> build Docker image
+-> push image to careertrackacr2026.azurecr.io/careertrack
+-> deploy that image to the careertrack12 Azure Web App
+```
+
+The Azure Web App still needs its runtime settings in App Service environment variables, including `WEBSITES_PORT=8000` and the Snowflake settings.
+
 ## Routes
 
 - `/` redirects to login or dashboard
